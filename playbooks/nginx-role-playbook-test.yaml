@@ -1,0 +1,4 @@
+- hosts: LinuxServers
+  become: true
+  roles:
+    - role: nginxinc.nginx

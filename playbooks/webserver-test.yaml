@@ -1,0 +1,20 @@
+- hosts: LinuxServers
+  become_method: sudo
+  become: yes
+  remote_user: sela
+  tasks:
+  - name: ensure apache is at the latest version
+    apt:
+      name: apache2
+      state: latest
+    notify:
+    - restart apache2
+  - name: ensure apache is running
+    service:
+      name: apache2
+      state: started
+  handlers:
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
